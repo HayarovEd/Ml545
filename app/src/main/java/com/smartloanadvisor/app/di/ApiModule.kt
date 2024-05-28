@@ -1,15 +1,12 @@
-package credit.calc.com.di
+package com.smartloanadvisor.app.di
 
 import com.smartloanadvisor.app.data.remote.ApiAnalytic
 import com.smartloanadvisor.app.data.remote.ApiServer
-import com.smartloanadvisor.app.data.remote.ApiUser
-import com.smartloanadvisor.app.domain.utils.BASE_CBR_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import com.smartloanadvisor.app.domain.utils.URL_ANALYTICS
-import com.smartloanadvisor.app.domain.utils.URL_POST_SERVER
 import com.smartloanadvisor.app.domain.utils.URL_SERVER
 import javax.inject.Singleton
 import retrofit2.Retrofit
@@ -38,23 +35,4 @@ object ApiModule {
             .create(ApiServer::class.java)
     }
 
-    @Provides
-    @Singleton
-    fun provideApiUser(): ApiUser {
-        return Retrofit.Builder()
-            .baseUrl(URL_POST_SERVER)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiUser::class.java)
-    }
-
-    @Provides
-    @Singleton
-    fun provideApiCbr(): ApiCbr {
-        return Retrofit.Builder()
-            .baseUrl(BASE_CBR_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiCbr::class.java)
-    }
 }

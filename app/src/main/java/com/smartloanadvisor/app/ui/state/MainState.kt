@@ -18,5 +18,5 @@ data class MainState(
     val dbData: BaseData? = null,
     val isLoading:Boolean = false,
     val lastState: StatusApplication = StatusApplication.Welcome,
-    val statusApplication: StatusApplication = StatusApplication.Splash/*Web(url = "https://ya.ru/", offerName = "Offer")*/,
+    val statusApplication: StatusApplication = StatusApplication.Welcome/*Web(url = "https://ya.ru/", offerName = "Offer")*/,
 )

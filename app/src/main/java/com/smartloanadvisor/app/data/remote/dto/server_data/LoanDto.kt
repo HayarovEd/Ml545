@@ -1,4 +1,4 @@
-package com.smartloanadvisor.app.data.remote.dto
+package com.smartloanadvisor.app.data.remote.dto.server_data
 
 
 import com.google.gson.annotations.SerializedName
@@ -6,6 +6,10 @@ import com.google.gson.annotations.SerializedName
 data class LoanDto(
     @SerializedName("description")
     val description: String,
+    @SerializedName("extra_field_0")
+    val extraField0: String?,
+    @SerializedName("extra_field_1")
+    val extraField1: String?,
     @SerializedName("hide_PercentFields")
     val hidePercentFields: String,
     @SerializedName("hide_TermFields")
@@ -22,14 +26,10 @@ data class LoanDto(
     val order: String,
     @SerializedName("orderButtonText")
     val orderButtonText: String,
-    @SerializedName("percent")
-    val percent: String,
-    @SerializedName("percentPostfix")
-    val percentPostfix: String,
-    @SerializedName("percentPrefix")
-    val percentPrefix: String,
     @SerializedName("position")
     val position: Int,
+    @SerializedName("position_in_category")
+    val positionInCategory: Int,
     @SerializedName("score")
     val score: String,
     @SerializedName("screen")
@@ -55,5 +55,21 @@ data class LoanDto(
     @SerializedName("summPostfix")
     val summPostfix: String,
     @SerializedName("summPrefix")
-    val summPrefix: String
+    val summPrefix: String,
+    @SerializedName("termMax")
+    val termMax: String,
+    @SerializedName("termMid")
+    val termMid: String,
+    @SerializedName("termMin")
+    val termMin: String,
+    @SerializedName("termPostfix")
+    val termPostfix: String,
+    @SerializedName("termPrefix")
+    val termPrefix: String,
+    @SerializedName("percent")
+    val percent: String,
+    @SerializedName("percentPostfix")
+    val percentPostfix: String,
+    @SerializedName("percentPrefix")
+    val percentPrefix: String,
 )

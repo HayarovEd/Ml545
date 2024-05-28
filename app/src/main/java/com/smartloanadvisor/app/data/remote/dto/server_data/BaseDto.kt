@@ -1,4 +1,4 @@
-package com.smartloanadvisor.app.data.remote.dto
+package com.smartloanadvisor.app.data.remote.dto.server_data
 
 
 import com.google.gson.annotations.SerializedName

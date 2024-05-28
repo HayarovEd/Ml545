@@ -29,4 +29,5 @@ data class Loan(
     //val summPostfix: String,
     //val summPrefix: String
     val amounts: String,
+    val terms: String,
 )

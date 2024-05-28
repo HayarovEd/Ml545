@@ -1,4 +1,4 @@
-package credit.calc.com.di
+package com.smartloanadvisor.app.di
 
 import com.smartloanadvisor.app.data.repository.RepositoryAnalyticImpl
 import com.smartloanadvisor.app.data.repository.RepositoryServerImpl

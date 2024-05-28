@@ -1,6 +1,6 @@
 package com.smartloanadvisor.app.data.remote
 
-import com.smartloanadvisor.app.data.remote.dto.BaseDto
+import com.smartloanadvisor.app.data.remote.dto.server_data.BaseDto
 import retrofit2.http.GET
 
 interface ApiServer {
