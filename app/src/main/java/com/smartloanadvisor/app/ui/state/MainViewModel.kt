@@ -54,6 +54,17 @@ class MainViewModel @Inject constructor(
     init {
        viewModelScope.launch {
            loadData()
+           when (val cbrData = repositoryServer.getCurrency()) {
+               is Resource.Error -> {
+
+               }
+               is Resource.Success -> {
+                   _state.value.copy(
+                       cbrData = cbrData.data
+                   )
+                       .updateStateUI()
+               }
+           }
        }
     }
 

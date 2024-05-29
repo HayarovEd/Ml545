@@ -28,8 +28,14 @@ fun BaseScene(
 
         StatusApplication.Main -> {
             val loans = state.value.dbData?.loans?.take(3) ?: emptyList()
+            val l1 = if (loans.isNotEmpty()) loans[0] else null
+            val l2 = if (loans.size > 1) loans[1] else null
+            val l3 = if (loans.size > 2) loans[2] else null
             MainScreen(
-                popularLoans = loans,
+                loan1 = l1,
+                loan2 = l2,
+                loan3 = l3,
+                cbrData = state.value.cbrData,
                 event = event
             )
         }

@@ -1,6 +1,7 @@
 package com.smartloanadvisor.app.ui.state
 
 import com.smartloanadvisor.app.domain.model.BaseData
+import com.smartloanadvisor.app.domain.model.CbrData
 
 
 data class MainState(
@@ -17,6 +18,7 @@ data class MainState(
     val affsub5Unswer: String = "",
     val dbData: BaseData? = null,
     val isLoading:Boolean = false,
+    val cbrData: CbrData? = null,
     val lastState: StatusApplication = StatusApplication.Welcome,
     val statusApplication: StatusApplication = StatusApplication.Welcome/*Web(url = "https://ya.ru/", offerName = "Offer")*/,
 )

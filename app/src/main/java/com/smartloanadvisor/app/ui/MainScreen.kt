@@ -7,9 +7,11 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -42,6 +44,7 @@ import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.smartloanadvisor.app.R
+import com.smartloanadvisor.app.domain.model.CbrData
 import com.smartloanadvisor.app.domain.model.Loan
 import com.smartloanadvisor.app.ui.state.MainEvent
 import com.smartloanadvisor.app.ui.state.StatusApplication
@@ -50,21 +53,16 @@ import com.smartloanadvisor.app.ui.theme.black
 import com.smartloanadvisor.app.ui.theme.blue
 import com.smartloanadvisor.app.ui.theme.grey
 import com.smartloanadvisor.app.ui.theme.white
+import com.smartloanadvisor.app.ui.uikit.RowCurrency
 
-
-@Preview
-@Composable
-private fun Sample() {
-    MainScreen(
-        popularLoans = emptyList(),
-        event = {},
-    )
-}
 
 @Composable
 fun MainScreen(
     modifier: Modifier = Modifier,
-    popularLoans: List<Loan>,
+    loan1: Loan?,
+    loan2: Loan?,
+    loan3: Loan?,
+    cbrData: CbrData?,
     event: (MainEvent) -> Unit,
 ) {
     BackHandler {
@@ -76,92 +74,20 @@ fun MainScreen(
             .background(color = background)
             .padding(horizontal = 15.dp, vertical = 25.dp)
     ) {
-        Text(
-            text = stringResource(R.string.current_offers),
-            style = TextStyle(
-                fontSize = 18.sp,
-                fontWeight = FontWeight(500),
-                color = black,
-            ),
-        )
-        Spacer(modifier = modifier.height(25.dp))
-        Card(
+        Row(
             modifier = modifier
                 .fillMaxWidth(),
-            shape = RoundedCornerShape(10.dp)
+            verticalAlignment = Alignment.CenterVertically,
         ) {
-            Box(
-                modifier = modifier
-                    .fillMaxWidth(),
-            ) {
-                Image(
-                    modifier = modifier
-                        .fillMaxWidth(),
-                    painter = painterResource(id = R.drawable.actual_loans),
-                    contentDescription = "",
-                    contentScale = ContentScale.FillWidth
-                )
-                Row(
-                    modifier = modifier
-                        .align(alignment = Alignment.BottomCenter)
-                        .fillMaxWidth()
-                        .padding(10.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(
-                        text = stringResource(R.string.without_references),
-                        style = TextStyle(
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight(600),
-                            color = white,
-                        ),
-                    )
-                    Button(
-                        modifier = modifier,
-                        shape = RoundedCornerShape(100.dp),
-                        contentPadding = PaddingValues(horizontal = 8.dp),
-                        colors = ButtonDefaults.buttonColors(
-                            containerColor = blue
-                        ),
-                        onClick = {
-                            event(MainEvent.OnChangeStatusApplication(StatusApplication.Loans))
-                        }) {
-                        Text(
-                            text = stringResource(R.string.more_info),
-                            style = TextStyle(
-                                fontSize = 12.sp,
-                                fontWeight = FontWeight(600),
-                                color = white,
-                            ),
-                        )
-                    }
-                }
-            }
-        }
-        Spacer(modifier = modifier.height(35.dp))
-        Text(
-            text = stringResource(R.string.popular_offers),
-            style = TextStyle(
-                fontSize = 18.sp,
-                fontWeight = FontWeight(500),
-                color = black,
-            ),
-        )
-        Spacer(modifier = modifier.height(25.dp))
-        LazyRow(
-            modifier = modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(14.dp)
-        ) {
-            items(popularLoans) { loan ->
+            if (loan1!=null) {
                 Card(
                     modifier = modifier
-                        .width(100.dp)
+                        .weight(1f)
                         .clickable {
                             event(
                                 MainEvent.OnGoToWeb(
-                                    nameOffer = loan.name,
-                                    urlOffer = loan.order
+                                    nameOffer = loan1.name,
+                                    urlOffer = loan1.order
                                 )
                             )
                             event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
@@ -169,13 +95,67 @@ fun MainScreen(
                     shape = RoundedCornerShape(15.dp)
                 ) {
                     AsyncImage(
-                        modifier = modifier.fillMaxWidth(),
-                        model =  ImageRequest.Builder(LocalContext.current)
-                            .data(loan.screen)
+                        modifier = modifier,
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(loan1.screen)
                             .decoderFactory(SvgDecoder.Factory())
                             .build(),
                         contentDescription = "",
-                        contentScale = ContentScale.FillWidth
+                        //contentScale = ContentScale.FillHeight
+                    )
+                }
+                Spacer(modifier = modifier.width(15.dp))
+            }
+            if (loan2!=null) {
+                Card(
+                    modifier = modifier
+                        .weight(1f)
+                        .clickable {
+                            event(
+                                MainEvent.OnGoToWeb(
+                                    nameOffer = loan2.name,
+                                    urlOffer = loan2.order
+                                )
+                            )
+                            event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
+                        },
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+                    AsyncImage(
+                        modifier = modifier,
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(loan2.screen)
+                            .decoderFactory(SvgDecoder.Factory())
+                            .build(),
+                        contentDescription = "",
+                        //contentScale = ContentScale.FillHeight
+                    )
+                }
+                Spacer(modifier = modifier.width(15.dp))
+            }
+            if (loan3!=null) {
+                Card(
+                    modifier = modifier
+                        .weight(1f)
+                        .clickable {
+                            event(
+                                MainEvent.OnGoToWeb(
+                                    nameOffer = loan3.name,
+                                    urlOffer = loan3.order
+                                )
+                            )
+                            event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
+                        },
+                    shape = RoundedCornerShape(15.dp)
+                ) {
+                    AsyncImage(
+                        modifier = modifier,
+                        model = ImageRequest.Builder(LocalContext.current)
+                            .data(loan3.screen)
+                            .decoderFactory(SvgDecoder.Factory())
+                            .build(),
+                        contentDescription = "",
+                        //contentScale = ContentScale.FillHeight
                     )
                 }
             }
@@ -201,6 +181,67 @@ fun MainScreen(
                 contentDescription = "",
                 tint = grey
             )
+        }
+        if (cbrData != null) {
+            Spacer(modifier = modifier.height(25.dp))
+            Text(
+                text = stringResource(R.string.currency_course),
+                style = TextStyle(
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight(600),
+                    color = black
+                )
+            )
+            Spacer(modifier = modifier.height(15.dp))
+            Row (
+                modifier = modifier
+                    .fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.End
+            ) {
+                Text(
+                    text = cbrData.previousDate,
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight(500),
+                        color = grey
+                    )
+                )
+                Spacer(modifier = modifier.width(93.dp))
+                Text(
+                    text = cbrData.date,
+                    style = TextStyle(
+                        fontSize = 13.sp,
+                        fontWeight = FontWeight(500),
+                        color = grey
+                    )
+                )
+            }
+            Spacer(modifier = modifier.height(5.dp))
+            RowCurrency(
+                icon = "\$",
+                name = cbrData.currency.uSD.charCode,
+                prevValue = cbrData.currency.uSD.previous,
+                diffValue = cbrData.currency.uSD.changeValue,
+                value = cbrData.currency.uSD.value
+            )
+            Spacer(modifier = modifier.height(2.dp))
+            RowCurrency(
+                icon = "€",
+                name = cbrData.currency.eUR.charCode,
+                prevValue = cbrData.currency.eUR.previous,
+                diffValue = cbrData.currency.eUR.changeValue,
+                value = cbrData.currency.eUR.value
+            )
+            Spacer(modifier = modifier.height(2.dp))
+            RowCurrency(
+                icon = "¥",
+                name = cbrData.currency.cNY.charCode,
+                prevValue = cbrData.currency.cNY.previous,
+                diffValue = cbrData.currency.cNY.changeValue,
+                value = cbrData.currency.cNY.value
+            )
+            Spacer(modifier = modifier.height(15.dp))
         }
     }
 }

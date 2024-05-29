@@ -1,7 +1,9 @@
 package com.smartloanadvisor.app.di
 
 import com.smartloanadvisor.app.data.remote.ApiAnalytic
+import com.smartloanadvisor.app.data.remote.ApiCbr
 import com.smartloanadvisor.app.data.remote.ApiServer
+import com.smartloanadvisor.app.domain.utils.BASE_CBR_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,6 +35,16 @@ object ApiModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiServer::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiCbr(): ApiCbr {
+        return Retrofit.Builder()
+            .baseUrl(BASE_CBR_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(ApiCbr::class.java)
     }
 
 }

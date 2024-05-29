@@ -1,9 +1,15 @@
 package com.smartloanadvisor.app.data.mapper
 
+import com.smartloanadvisor.app.data.remote.dto.cbr.CbrDto
 import com.smartloanadvisor.app.data.remote.dto.server_data.BaseDto
 import com.smartloanadvisor.app.domain.model.AppConfig
 import com.smartloanadvisor.app.domain.model.BaseData
+import com.smartloanadvisor.app.domain.model.CNY
+import com.smartloanadvisor.app.domain.model.CbrData
+import com.smartloanadvisor.app.domain.model.Currency
+import com.smartloanadvisor.app.domain.model.EUR
 import com.smartloanadvisor.app.domain.model.Loan
+import com.smartloanadvisor.app.domain.model.USD
 
 fun BaseDto.mapToBaseData(): BaseData {
     return BaseData(
@@ -41,4 +47,41 @@ fun BaseDto.mapToBaseData(): BaseData {
             )
         }
     )
+}
+
+fun CbrDto.mapToCberData(): CbrData {
+    return CbrData(
+        date = formatCbrDate(this.date),
+        previousDate = formatCbrDate(this.previousDate),
+        currency = Currency(
+            cNY = CNY(
+                name = this.currencyDto.cNY.name,
+                charCode = this.currencyDto.cNY.charCode,
+                nominal = this.currencyDto.cNY.nominal,
+                value = this.currencyDto.cNY.value,
+                previous = this.currencyDto.cNY.previous
+            ),
+            eUR = EUR(
+                name = this.currencyDto.eUR.name,
+                charCode = this.currencyDto.eUR.charCode,
+                nominal = this.currencyDto.eUR.nominal,
+                value = this.currencyDto.eUR.value,
+                previous = this.currencyDto.eUR.previous
+            ),
+            uSD = USD(
+                name = this.currencyDto.uSD.name,
+                charCode = this.currencyDto.uSD.charCode,
+                nominal = this.currencyDto.uSD.nominal,
+                value = this.currencyDto.uSD.value,
+                previous = this.currencyDto.uSD.previous
+            )
+        )
+    )
+}
+
+
+private fun formatCbrDate(current: String): String {
+    val month = current.substring(5, 7)
+    val day = current.substring(8, 10)
+    return "$day.$month"
 }
