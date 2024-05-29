@@ -11,4 +11,7 @@
     <string name="amounts">Суммы:</string>
     <string name="rate">Ставка:</string>
     <string name="period">Срок:</string>
+    <string name="no_connection">Нет соединения</string>
+    <string name="try_again">Проверьте интернет-соединение\nи попробуйте ещё раз</string>
+    <string name="reconnect">Переподключиться</string>
 </resources>

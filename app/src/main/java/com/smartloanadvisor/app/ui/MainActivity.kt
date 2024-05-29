@@ -93,7 +93,7 @@ class MainActivity : ComponentActivity() {
         AppsFlyerLib.getInstance().start(this)
         setContent {
             Ml545Theme {
-                //BaseScene(viewModel = viewModel)
+                BaseScene(viewModel = viewModel)
             }
         }
     }

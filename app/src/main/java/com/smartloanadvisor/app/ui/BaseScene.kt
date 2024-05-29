@@ -4,6 +4,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.smartloanadvisor.app.ui.state.MainEvent
 import com.smartloanadvisor.app.ui.state.MainViewModel
 import com.smartloanadvisor.app.ui.state.StatusApplication
 
@@ -33,10 +34,38 @@ fun BaseScene(
             )
         }
 
-        is StatusApplication.Offer -> TODO()
-        StatusApplication.Reconnect -> TODO()
-        StatusApplication.ReconnectFirstLoad -> TODO()
-        is StatusApplication.Web -> TODO()
+        is StatusApplication.Offer -> {
+            OfferScreen(
+                loan = currentState.loan,
+                event = event
+            )
+        }
+
+        StatusApplication.Reconnect -> {
+            NoInternetScreen(
+                onClick = {
+                    event(MainEvent.Reconnect)
+                }
+            )
+        }
+
+        StatusApplication.ReconnectFirstLoad -> {
+            NoInternetScreen(
+                onClick = {
+                    event(MainEvent.ReconnectFirstLoad)
+                }
+            )
+        }
+
+        is StatusApplication.Web -> {
+            WebViewScreen(
+                lastState = state.value.lastState,
+                url = currentState.url,
+                offerName = currentState.offerName,
+                onEvent = event
+            )
+        }
+
         StatusApplication.Welcome -> {
             WelcomeScreen(
                 event = event

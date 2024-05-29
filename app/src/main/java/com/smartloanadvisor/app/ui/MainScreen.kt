@@ -155,7 +155,12 @@ fun MainScreen(
                     modifier = modifier
                         .width(100.dp)
                         .clickable {
-                            event(MainEvent.OnChangeStatusApplication(StatusApplication.Offer(loan)))
+                            event(
+                                MainEvent.OnGoToWeb(
+                                    nameOffer = loan.name,
+                                    urlOffer = loan.order
+                                )
+                            )
                             event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
                         },
                     shape = RoundedCornerShape(15.dp)
