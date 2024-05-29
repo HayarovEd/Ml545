@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Атриум</string>
+    <string name="money_to_card">Деньги на карту!</string>
+    <string name="fast_money">Быстрое и удобное получение средств  на вашу банковскую карту. Мы максимально облегчили процедуру получения займа - с нами надежно и эффективно!</string>
+    <string name="next">Далее</string>
+    <string name="without_references">Без справок</string>
+    <string name="more_info">Подробнее</string>
+    <string name="current_offers">Актуальные предложения</string>
+    <string name="popular_offers">Популярные предложения</string>
+    <string name="see_all">Смотреть все</string>
 </resources>

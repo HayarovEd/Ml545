@@ -1,3 +1,4 @@
+/*
 package credit.calc.com.ui.uikit
 
 import androidx.compose.foundation.layout.PaddingValues
@@ -43,4 +44,4 @@ fun CustomButton(
             )
         )
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package credit.calc.com.ui.uikit
 
 import android.util.Log
@@ -115,4 +116,4 @@ fun ItemLoan(
             }
         }
     }
-}
+}*/
