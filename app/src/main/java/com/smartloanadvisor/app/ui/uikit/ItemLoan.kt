@@ -1,7 +1,7 @@
-/*
 package credit.calc.com.ui.uikit
 
-import android.util.Log
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -15,43 +15,46 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
-import credit.calc.com.R
-import credit.calc.com.domain.model.Loan
+import com.smartloanadvisor.app.R
+import com.smartloanadvisor.app.domain.model.Loan
+import com.smartloanadvisor.app.domain.utils.VALUE_ONE
 import com.smartloanadvisor.app.ui.state.MainEvent
-import credit.calc.com.ui.theme.background
-import credit.calc.com.ui.theme.black
-import credit.calc.com.ui.theme.card
-import credit.calc.com.ui.theme.violet
+import com.smartloanadvisor.app.ui.state.StatusApplication
+import com.smartloanadvisor.app.ui.theme.black
+import com.smartloanadvisor.app.ui.theme.blue
+import com.smartloanadvisor.app.ui.theme.lightBlue
+import com.smartloanadvisor.app.ui.theme.white
+import com.smartloanadvisor.app.ui.uikit.RowCard
 
 @Composable
 fun ItemLoan(
-    modifier: Modifier  = Modifier,
+    modifier: Modifier = Modifier,
     loan: Loan,
-    onEvent: (MainEvent) -> Unit,
+    event: (MainEvent) -> Unit,
 ) {
-    Log.d("test load image", "image ${loan.image}" )
-    Card (
+    Card(
         modifier = modifier
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
-            containerColor = card
+            containerColor = white
         ),
         elevation = CardDefaults.cardElevation(
             defaultElevation = 20.dp
@@ -60,60 +63,121 @@ fun ItemLoan(
         Column(
             modifier = modifier
                 .fillMaxWidth()
-                .padding(horizontal = 17.dp, vertical = 40.dp),
+                .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
+            AsyncImage(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .clickable {
+                        event(
+                            MainEvent.OnGoToWeb(
+                                nameOffer = loan.name,
+                                urlOffer = loan.order
+                            )
+                        )
+                        event(MainEvent.UpdateLastStatusApplication(StatusApplication.Loans))
+                    },
+                model = ImageRequest.Builder(LocalContext.current)
+                    .data(loan.screen)
+                    .decoderFactory(SvgDecoder.Factory())
+                    .build(),
+                contentDescription = "",
+                contentScale = ContentScale.FillWidth
+            )
+            Spacer(modifier = modifier.height(13.dp))
+            Text(
+                text = loan.name,
+                style = TextStyle(
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight(600),
+                    color = black
+                )
+            )
+            Spacer(modifier = modifier.height(13.dp))
+            LoanCharacteristic(
+                title = stringResource(R.string.amounts),
+                value = loan.amounts
+            )
+            if (loan.hidePercentFields == VALUE_ONE) {
+                Spacer(modifier = modifier.height(13.dp))
+                LoanCharacteristic(
+                    title = stringResource(R.string.rate),
+                    value = loan.percent
+                )
+            }
+            if (loan.hideTermFields == VALUE_ONE) {
+                Spacer(modifier = modifier.height(13.dp))
+                LoanCharacteristic(
+                    title = stringResource(R.string.period),
+                    value = loan.terms
+                )
+            }
+            Spacer(modifier = modifier.height(13.dp))
+            RowCard(
+                showVisa = loan.showVisa,
+                showMaster = loan.showMastercard,
+                showYandex = loan.showYandex,
+                showMir = loan.showMir,
+                showQivi = loan.showQiwi,
+                showCache = loan.showCash
+            )
+            Spacer(modifier = modifier.height(13.dp))
             Row(
                 modifier = modifier
                     .fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
-                AsyncImage(
-                    modifier = modifier.width(150.dp),
-                    model = ImageRequest.Builder(LocalContext.current)
-                        .data(loan.image)
-                        .decoderFactory(SvgDecoder.Factory())
-                        .build(),
-                    contentDescription = "",
-                    contentScale = ContentScale.FillWidth)
-                Spacer(modifier = modifier.weight(1f))
-                Text(
-                    text = loan.name,
-                    style = TextStyle(
-                        fontSize = 20.sp,
-                        fontFamily = FontFamily(Font(R.font.gilroy)),
-                        fontWeight = FontWeight(600),
-                        color = black
+                Button(
+                    modifier = modifier
+                        .weight(1f)
+                        .padding(24.dp),
+                    shape = RoundedCornerShape(5.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = lightBlue,
+                    ),
+                    contentPadding = PaddingValues(vertical = 8.dp),
+                    onClick = {
+                        event(MainEvent.OnChangeStatusApplication(StatusApplication.Offer(loan)))
+                        event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
+                    }
+                ) {
+                    Icon(
+                        imageVector = ImageVector.vectorResource(id = R.drawable.baseline_more_horiz_24),
+                        contentDescription = "",
+                        tint = black
                     )
-                )
-            }
-            Spacer(modifier = modifier.height(28.dp))
-            Button(
-                modifier = modifier
-                    .fillMaxWidth()
-                    .padding(24.dp),
-                shape = RoundedCornerShape(5.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = violet,
-                ),
-                contentPadding = PaddingValues(vertical = 9.dp),
-                onClick = {
-                    onEvent(
-                        MainEvent.OnGoToWeb(
-                            urlOffer = loan.url,
-                            nameOffer = loan.name
-                        ))
-                }) {
-                Text(
-                    text = stringResource(R.string.checkout),
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        fontFamily = FontFamily(Font(R.font.gilroy)),
-                        fontWeight = FontWeight(600),
-                        color = background
+                }
+                Spacer(modifier = modifier.width(9.dp))
+                Button(
+                    modifier = modifier
+                        .weight(3f)
+                        .padding(24.dp),
+                    shape = RoundedCornerShape(5.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = blue,
+                    ),
+                    contentPadding = PaddingValues(vertical = 8.dp),
+                    onClick = {
+                        event(
+                            MainEvent.OnGoToWeb(
+                                nameOffer = loan.name,
+                                urlOffer = loan.order
+                            )
+                        )
+                        event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
+                    }
+                ) {
+                    Text(
+                        text = loan.orderButtonText,
+                        style = TextStyle(
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight(700),
+                            color = white
+                        )
                     )
-                )
+                }
             }
         }
     }
-}*/
+}

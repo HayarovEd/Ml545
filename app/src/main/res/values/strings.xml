@@ -8,4 +8,7 @@
     <string name="current_offers">Актуальные предложения</string>
     <string name="popular_offers">Популярные предложения</string>
     <string name="see_all">Смотреть все</string>
+    <string name="amounts">Суммы:</string>
+    <string name="rate">Ставка:</string>
+    <string name="period">Срок:</string>
 </resources>

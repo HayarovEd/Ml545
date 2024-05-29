@@ -12,8 +12,6 @@ data class Loan(
     val order: String,
     val orderButtonText: String,
     val percent: String,
-    //val percentPostfix: String,
-    //val percentPrefix: String,
     val position: Int,
     val score: String,
     val screen: String,
@@ -23,11 +21,6 @@ data class Loan(
     val showQiwi: String,
     val showVisa: String,
     val showYandex: String,
-    //val summMax: String,
-    //val summMid: String,
-    //val summMin: String,
-    //val summPostfix: String,
-    //val summPrefix: String
     val amounts: String,
     val terms: String,
 )
