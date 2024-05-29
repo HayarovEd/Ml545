@@ -4,7 +4,7 @@ import com.smartloanadvisor.app.domain.model.Loan
 
 sealed class StatusApplication {
     data object Welcome: StatusApplication()
-    data object Main: StatusApplication()
+    //data object Main: StatusApplication()
 
     data object Loans: StatusApplication()
     class Web (

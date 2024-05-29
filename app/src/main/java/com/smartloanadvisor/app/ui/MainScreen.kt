@@ -90,7 +90,7 @@ fun MainScreen(
                                     urlOffer = loan1.order
                                 )
                             )
-                            event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
+                            //event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
                         },
                     shape = RoundedCornerShape(15.dp)
                 ) {
@@ -117,7 +117,7 @@ fun MainScreen(
                                     urlOffer = loan2.order
                                 )
                             )
-                            event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
+                            //event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
                         },
                     shape = RoundedCornerShape(15.dp)
                 ) {
@@ -144,7 +144,7 @@ fun MainScreen(
                                     urlOffer = loan3.order
                                 )
                             )
-                            event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
+                            //event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
                         },
                     shape = RoundedCornerShape(15.dp)
                 ) {

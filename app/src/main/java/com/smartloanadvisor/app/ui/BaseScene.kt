@@ -26,7 +26,7 @@ fun BaseScene(
             )
         }
 
-        StatusApplication.Main -> {
+        /*StatusApplication.Main -> {
             val loans = state.value.dbData?.loans?.take(3) ?: emptyList()
             val l1 = if (loans.isNotEmpty()) loans[0] else null
             val l2 = if (loans.size > 1) loans[1] else null
@@ -38,7 +38,7 @@ fun BaseScene(
                 cbrData = state.value.cbrData,
                 event = event
             )
-        }
+        }*/
 
         is StatusApplication.Offer -> {
             OfferScreen(

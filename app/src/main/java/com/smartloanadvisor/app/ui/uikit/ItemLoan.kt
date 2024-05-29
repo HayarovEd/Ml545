@@ -138,7 +138,7 @@ fun ItemLoan(
                     contentPadding = PaddingValues(vertical = 12.dp),
                     onClick = {
                         event(MainEvent.OnChangeStatusApplication(StatusApplication.Offer(loan)))
-                        event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
+                        event(MainEvent.UpdateLastStatusApplication(StatusApplication.Loans))
                     }
                 ) {
                     Icon(

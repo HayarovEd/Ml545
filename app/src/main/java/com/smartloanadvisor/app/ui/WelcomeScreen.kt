@@ -104,7 +104,7 @@ fun WelcomeScreen(
                 containerColor = blue
             ),
             onClick = {
-                event(MainEvent.OnChangeStatusApplication(StatusApplication.Main))
+                event(MainEvent.OnChangeStatusApplication(StatusApplication.Loans))
             }) {
             Text(
                 modifier = modifier.fillMaxWidth(),

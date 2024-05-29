@@ -45,7 +45,7 @@ fun LoansScreen(
     loanLazyState: LazyListState,
 ) {
     BackHandler {
-        event(MainEvent.OnChangeStatusApplication(StatusApplication.Main))
+        event(MainEvent.OnChangeStatusApplication(StatusApplication.Welcome))
     }
     Box(
         modifier = modifier
