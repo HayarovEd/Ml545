@@ -3,11 +3,14 @@ package com.smartloanadvisor.app.ui.uikit
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import com.smartloanadvisor.app.R
 import com.smartloanadvisor.app.domain.utils.VALUE_ONE
 
@@ -22,44 +25,62 @@ fun RowCard(
     showCache: String
 ) {
     Row(
-        horizontalArrangement = Arrangement.SpaceAround,
+        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
         if(showVisa== VALUE_ONE) {
             Image(
-                modifier = modifier.weight(1f),
+                modifier = modifier
+                    .height(30.dp)
+                    .weight(1f),
                 imageVector = ImageVector.vectorResource(id = R.drawable.visa),
-                contentDescription = "")
+                contentDescription = "",
+                contentScale = ContentScale.FillHeight)
         }
         if(showMaster== VALUE_ONE) {
             Image(
-                modifier = modifier.weight(1f),
+                modifier = modifier
+                    .height(30.dp)
+                    .weight(1f),
                 imageVector = ImageVector.vectorResource(id = R.drawable.master),
-                contentDescription = "")
+                contentDescription = "",
+                contentScale = ContentScale.FillHeight)
         }
         if(showYandex== VALUE_ONE) {
             Image(
-                modifier = modifier.weight(1f),
+                modifier = modifier
+                    .height(30.dp)
+                    .weight(1f),
                 imageVector = ImageVector.vectorResource(id = R.drawable.y_money),
-                contentDescription = "")
+                contentDescription = "",
+                contentScale = ContentScale.FillHeight)
         }
         if(showMir== VALUE_ONE) {
             Image(
-                modifier = modifier.weight(1f),
+                modifier = modifier
+                    .height(30.dp)
+                    .weight(1f),
                 imageVector = ImageVector.vectorResource(id = R.drawable.mir),
-                contentDescription = "")
+                contentDescription = "",
+                contentScale = ContentScale.FillHeight)
         }
         if(showQivi== VALUE_ONE) {
             Image(
-                modifier = modifier.weight(1f),
+                modifier = modifier
+                    .height(30.dp)
+                    .weight(1f),
                 imageVector = ImageVector.vectorResource(id = R.drawable.qivi),
-                contentDescription = "")
+                contentDescription = "",
+                contentScale = ContentScale.FillHeight)
         }
         if(showCache== VALUE_ONE) {
             Image(
-                modifier = modifier.weight(1f),
+                modifier = modifier
+                    .height(30.dp)
+                    .weight(1f),
                 imageVector = ImageVector.vectorResource(id = R.drawable.cash),
-                contentDescription = "")
+                contentDescription = "",
+                contentScale = ContentScale.FillHeight)
         }
     }
 }

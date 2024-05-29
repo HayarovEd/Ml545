@@ -190,7 +190,7 @@ fun OfferScreen(
                 }) {
                 Text(
                     modifier = modifier.fillMaxWidth(),
-                    text = loan.description,
+                    text = loan.orderButtonText,
                     style = TextStyle(
                         fontSize = 18.sp,
                         fontWeight = FontWeight(700),

@@ -7,7 +7,7 @@ const val USER_X = ""
 const val APPS_FLYER = "jLNYzxQAqxAFeturo6YEAD"
 const val URL_ANALYTICS = "https://analyticsharks.xyz"
 const val URL_SERVER = "https://busklo.top/"
-const val APP_ID_HMS = ""
+const val APP_ID_HMS = "111125513"
 
 const val SHARED_DATA = "shared_data"
 const val SHARED_FIREBASE_TOKEN = "firebase_token"

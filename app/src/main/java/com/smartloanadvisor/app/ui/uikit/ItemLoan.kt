@@ -130,13 +130,12 @@ fun ItemLoan(
             ) {
                 Button(
                     modifier = modifier
-                        .weight(1f)
-                        .padding(24.dp),
+                        .weight(1f),
                     shape = RoundedCornerShape(5.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = lightBlue,
                     ),
-                    contentPadding = PaddingValues(vertical = 8.dp),
+                    contentPadding = PaddingValues(vertical = 12.dp),
                     onClick = {
                         event(MainEvent.OnChangeStatusApplication(StatusApplication.Offer(loan)))
                         event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
@@ -151,13 +150,12 @@ fun ItemLoan(
                 Spacer(modifier = modifier.width(9.dp))
                 Button(
                     modifier = modifier
-                        .weight(3f)
-                        .padding(24.dp),
+                        .weight(3f),
                     shape = RoundedCornerShape(5.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = blue,
                     ),
-                    contentPadding = PaddingValues(vertical = 8.dp),
+                    contentPadding = PaddingValues(vertical = 12.dp),
                     onClick = {
                         event(
                             MainEvent.OnGoToWeb(
@@ -165,7 +163,7 @@ fun ItemLoan(
                                 urlOffer = loan.order
                             )
                         )
-                        event(MainEvent.UpdateLastStatusApplication(StatusApplication.Main))
+                        event(MainEvent.UpdateLastStatusApplication(StatusApplication.Loans))
                     }
                 ) {
                     Text(

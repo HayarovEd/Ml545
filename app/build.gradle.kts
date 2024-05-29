@@ -105,6 +105,8 @@ dependencies {
 
     // Icons
     implementation (libs.androidx.material.icons.extended)
+
+    implementation (libs.accompanist.systemuicontroller)
 }
 
 kapt{
